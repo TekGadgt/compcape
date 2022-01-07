@@ -10,7 +10,7 @@ function htmlTemplate(title, url, done, close) {
                     <div class="card-body">
                         <div class="row">
                             <div class="col">
-                                <h4 class="card-title"><a href="${url}" class="link-light" target="_blank">${title}</a></h4>
+                                <h5 class="card-title"><a href="${url}" class="link-light" target="_blank">${title}</a></h5>
                             </div>
                             <div class="col">
                                 <div class="row">
