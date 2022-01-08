@@ -7,6 +7,5 @@ body {
 }
 
 .progress {
-    background-color: transparent;
-    opacity: 0;
+    background-color: transparent !important;
 }
