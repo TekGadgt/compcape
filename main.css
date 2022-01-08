@@ -5,3 +5,8 @@ body {
 #title {
     text-align: center;
 }
+
+.progress {
+    background-color: transparent;
+    opacity: 0;
+}
