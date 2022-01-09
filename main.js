@@ -38,7 +38,8 @@ function htmlTemplate(title, url, done, close) {
             </div>`
 }
 
-fetch(`/.netlify/functions/lookup`)
+if (window.location.pathname === '/') {
+fetch(`/.netlify/functions/lookup?username=tekgadgt`)
     .then((response) => response.json())
     .then((responseJSON) => {
         results = responseJSON.results;
@@ -72,3 +73,39 @@ fetch(`/.netlify/functions/lookup`)
         notDoneProgress.innerHTML = currentNotDoneProgress + "%"
         notDoneProgress.setAttribute("aria-valuenow", currentNotDoneProgress)
     })
+} else if (window.location.pathname === '/jsleek21.html') {
+    fetch(`/.netlify/functions/lookup?username=jsleek21`)
+    .then((response) => response.json())
+    .then((responseJSON) => {
+        results = responseJSON.results;
+
+        var doneCount = []
+        var closeCount = []
+
+        for (i = 0; i < results.length; i++) {
+            if (results[i].properties["Done?"].checkbox === true) {
+                doneCount.push(results[i].properties["Done?"].checkbox)
+            }
+            if (results[i].properties["Close?"].checkbox === true) {
+                closeCount.push(results[i].properties["Done?"].checkbox)
+            }
+
+            tracker.innerHTML += htmlTemplate(results[i].properties["Name"].title[0].plain_text, results[i].properties["URL"].url, results[i].properties["Done?"].checkbox, results[i].properties["Close?"].checkbox)
+        }
+
+        var currentDoneProgress = Math.round((doneCount.length / results.length) * 100)
+        doneProgress.style.width = currentDoneProgress + "%"
+        doneProgress.innerHTML = currentDoneProgress + "%"
+        doneProgress.setAttribute("aria-valuenow", currentDoneProgress)
+
+        var currentCloseProgress = Math.round((closeCount.length / results.length) * 100)
+        closeProgress.style.width = currentCloseProgress + "%"
+        closeProgress.innerHTML = currentCloseProgress + "%"
+        closeProgress.setAttribute("aria-valuenow", currentCloseProgress)
+
+        var currentNotDoneProgress = 100 - (currentDoneProgress + currentCloseProgress)
+        notDoneProgress.style.width = currentNotDoneProgress + "%"
+        notDoneProgress.innerHTML = currentNotDoneProgress + "%"
+        notDoneProgress.setAttribute("aria-valuenow", currentNotDoneProgress)
+    })
+}
