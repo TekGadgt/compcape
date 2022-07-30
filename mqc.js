@@ -48,7 +48,7 @@ function htmlTemplate(title, url, done, close) {
           </div>`;
 }
 
-fetch(`/.netlify/functions/lookup?cape=comp`)
+fetch(`/.netlify/functions/lookup?cape=mqc`)
   .then((response) => response.json())
   .then((responseJSON) => {
     results = responseJSON.results;
