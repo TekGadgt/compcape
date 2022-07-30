@@ -61,7 +61,7 @@ fetch(`/.netlify/functions/lookup?cape=comp`)
         doneCount.push(results[i].properties["Done?"].checkbox);
       }
       if (results[i].properties["Close?"].checkbox === true) {
-        closeCount.push(results[i].properties["Done?"].checkbox);
+        closeCount.push(results[i].properties["Close?"].checkbox);
       }
 
       tracker.innerHTML += htmlTemplate(
