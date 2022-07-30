@@ -49,7 +49,7 @@ function htmlTemplate(title, url, done, close) {
 }
 
 fetch(
-  `/.netlify/functions/lookup?cape==${
+  `/.netlify/functions/lookup?cape=${
     window.location.pathname === "/" ? "comp" : "mqc"
   }`
 )
