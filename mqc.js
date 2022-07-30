@@ -50,7 +50,7 @@ function htmlTemplate(title, url, done, close) {
 
 fetch(`/.netlify/functions/lookup?cape=mqc`)
   .then((response) => response.json())
-  .then.then((responseJSON) => {
+  .then((responseJSON) => {
     console.log(responseJSON);
   });
 
