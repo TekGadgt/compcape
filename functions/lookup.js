@@ -20,7 +20,7 @@ exports.handler = async function (event, context) {
       sorts: [{ property: "Name", direction: "ascending" }],
     });
 
-    myPage = [...data];
+    myPage = [...data.results];
 
     while (data.has_more) {
       data = await notion.databases.query({
@@ -29,7 +29,7 @@ exports.handler = async function (event, context) {
         start_cursor: data.next_cursor,
       });
 
-      myPage = [...myPage, ...data];
+      myPage = [...myPage, ...data.results];
     }
   }
 
