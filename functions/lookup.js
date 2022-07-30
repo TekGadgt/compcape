@@ -13,14 +13,14 @@ exports.handler = async function (event, context) {
   }
 
   if (event.queryStringParameters.cape === "mqc") {
-    var myPage = [];
+    var tempData = [];
 
     var data = await notion.databases.query({
       database_id: process.env.NOTION_MQC,
       sorts: [{ property: "Name", direction: "ascending" }],
     });
 
-    myPage = [...data.results];
+    tempData = [...data.results];
 
     while (data.has_more) {
       data = await notion.databases.query({
@@ -29,8 +29,16 @@ exports.handler = async function (event, context) {
         start_cursor: data.next_cursor,
       });
 
-      myPage = [...myPage, ...data.results];
+      tempData = [...tempData, ...data.results];
     }
+
+    var myPage = tempData.map((achievement) => ({
+      title: achievement.properties["Name"].title[0].plain_text,
+      url: achievement.properties["URL"].url,
+      type: achievement.properties["Type"].select.name,
+      done: achievement.properties["Done?"].checkbox,
+      close: achievement.properties["Close?"].checkbox,
+    }));
   }
 
   return {
