@@ -1,11 +1,11 @@
 body {
-    background-image: url("https://runeapps.org/nis/alt1-currentskin/background.png");
+  background-image: url("https://runeapps.org/nis/alt1-currentskin/background.png");
 }
 
 #title {
-    text-align: center;
+  text-align: center;
 }
 
 .progress {
-    background-color: transparent !important;
+  background-color: transparent !important;
 }

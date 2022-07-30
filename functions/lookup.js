@@ -1,19 +1,26 @@
 exports.handler = async function (event, context) {
-    const { Client } = require("@notionhq/client")
+  const { Client } = require("@notionhq/client");
 
-    const notion = new Client({
-        auth: process.env.NOTION_SECRET,
-    })
+  const notion = new Client({
+    auth: process.env.NOTION_SECRET,
+  });
 
-    if(event.queryStringParameters.username === 'tekgadgt') {
-        var myPage = await notion.databases.query({
-            database_id: process.env.NOTION_TEKGADGT,
-            sorts: [{ property: "Name", direction: "ascending" }],
-        })
-    }
+  if (event.queryStringParameters.cape === "comp") {
+    var myPage = await notion.databases.query({
+      database_id: process.env.NOTION_COMPCAPE,
+      sorts: [{ property: "Name", direction: "ascending" }],
+    });
+  }
 
-    return {
-        statusCode: 200,
-        body: JSON.stringify(myPage),
-    }
-}
+  if (event.queryStringParameters.cape === "mqc") {
+    var myPage = await notion.databases.query({
+      database_id: process.env.NOTION_MQC,
+      sorts: [{ property: "Name", direction: "ascending" }],
+    });
+  }
+
+  return {
+    statusCode: 200,
+    body: JSON.stringify(myPage),
+  };
+};
