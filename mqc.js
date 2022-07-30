@@ -17,7 +17,7 @@ function htmlTemplate(title, url, type, done, close) {
                   <div class="col">
                     <div class="row">
                       <div class="col">
-                        <p>${type}</p>
+                        <p class="text-light">${type}</p>
                       </div>
                       <div class="col">
                         <div class="form-check">
